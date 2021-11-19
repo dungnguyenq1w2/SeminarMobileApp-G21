@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">SeminarGalery-G21</string>
+    <string name="app_name">Gallery 21</string>
 
 <!--    SettingsActivity-->
     <string name="adjustments">Adjustments</string>
-    <string name="color_theme">Color Theme</string>
-    <string name="color_theme_second">Change the color theme of the app</string>
+    <string name="dark_theme">Dark theme</string>
+    <string name="enable_dark_theme">Enable dark theme</string>
+    <string name="disable_dark_theme">Disable dark theme</string>
     <string name="font_size">Font size</string>
     <string name="font_size_second">Change the font size of the text the app</string>
     <string name="supports">Supports</string>

@@ -11,7 +11,8 @@
         android:theme="@style/Theme.SeminarGaleryG21">
         <activity
             android:name=".SettingsActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:noHistory="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

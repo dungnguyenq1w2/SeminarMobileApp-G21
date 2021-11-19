@@ -31,7 +31,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/ll_theme"
+                android:id="@+id/ll_dark_theme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/distance_between_items"
@@ -45,14 +45,15 @@
                     android:layout_marginBottom="@dimen/distance_to_second"
                     android:textColor="@color/dark_gray"
                     android:textSize="@dimen/font_size_list_item_titles"
-                    android:text="@string/color_theme" />
+                    android:text="@string/dark_theme" />
 
                 <TextView
+                    android:id="@+id/tv_dark_theme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/light_gray"
                     android:textSize="@dimen/font_size_captions"
-                    android:text="@string/color_theme_second" />
+                    android:text="@string/enable_dark_theme" />
 
             </LinearLayout>
 
