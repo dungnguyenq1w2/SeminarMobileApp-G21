@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_settings"
+    android:orientation="vertical"
+    android:background="@color/gray"
+    tools:context=".SettingsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/distance_between_settings"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/distance_to_item_titles"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/font_size_list_item_titles"
+            android:textStyle="bold"
+            android:text="@string/adjustments" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_theme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/distance_between_items"
+                android:orientation="vertical"
+                android:background="@drawable/settings_list_item_titles"
+                android:foreground="?selectableItemBackground">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/distance_to_second"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/font_size_list_item_titles"
+                    android:text="@string/color_theme" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
+                    android:textSize="@dimen/font_size_captions"
+                    android:text="@string/color_theme_second" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_font_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/settings_list_item_titles"
+                android:foreground="?selectableItemBackground">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/distance_to_second"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/font_size_list_item_titles"
+                    android:text="@string/font_size" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
+                    android:textSize="@dimen/font_size_captions"
+                    android:text="@string/font_size_second" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/distance_to_item_titles"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/font_size_list_item_titles"
+            android:textStyle="bold"
+            android:text="@string/supports" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_share"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/distance_between_items"
+                android:orientation="vertical"
+                android:background="@drawable/settings_list_item_titles"
+                android:foreground="?selectableItemBackground">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/font_size_list_item_titles"
+                    android:text="@string/share_app" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

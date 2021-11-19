@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/white" />
+    <corners android:radius="@dimen/border_radius_item_titles" />
+    <padding
+        android:top="@dimen/padding_vertical_item_titles"
+        android:right="@dimen/padding_horizontal_item_titles"
+        android:bottom="@dimen/padding_vertical_item_titles"
+        android:left="@dimen/padding_horizontal_item_titles" />
+</shape>

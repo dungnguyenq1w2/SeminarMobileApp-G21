@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_size_page_titles">20sp</dimen>
+    <dimen name="font_size_paragraph_text">14sp</dimen>
+    <dimen name="font_size_list_titles">14sp</dimen>
+    <dimen name="font_size_list_item_titles">16sp</dimen>
+    <dimen name="font_size_captions">14sp</dimen>
+    <dimen name="font_size_buttons">14sp</dimen>
+    <dimen name="font_size_text_inputs">16sp</dimen>
+
+    <dimen name="padding_settings">14dp</dimen>
+    <dimen name="padding_vertical_item_titles">12dp</dimen>
+    <dimen name="padding_horizontal_item_titles">8dp</dimen>
+    <dimen name="border_radius_item_titles">2dp</dimen>
+    <dimen name="distance_to_second">5dp</dimen>
+    <dimen name="distance_to_item_titles">7dp</dimen>
+    <dimen name="distance_between_settings">14dp</dimen>
+    <dimen name="distance_between_items">5dp</dimen>
+</resources>
