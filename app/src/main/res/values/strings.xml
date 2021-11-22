@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Gallery 21</string>
 
-<!--    SettingsActivity-->
+    <!--    SettingsActivity-->
     <string name="adjustments">Adjustments</string>
     <string name="dark_theme">Dark theme</string>
     <string name="enable_dark_theme">Enable dark theme</string>

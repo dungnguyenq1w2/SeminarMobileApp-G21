@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "230950878438",
+    "firebase_url": "https://gallery21-a98d0-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "gallery21-a98d0",
+    "storage_bucket": "gallery21-a98d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230950878438:android:dee36cbb905a6c3e234f27",
+        "android_client_info": {
+          "package_name": "com.example.seminargalery_g21"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "230950878438-41r8v70iqihkiekak52jaeeusia666mc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBezAeabrrPbjBUVc-vrgYUu9F16dblVwk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "230950878438-41r8v70iqihkiekak52jaeeusia666mc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

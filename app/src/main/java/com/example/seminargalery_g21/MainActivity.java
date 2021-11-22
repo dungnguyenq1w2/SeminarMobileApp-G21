@@ -18,10 +18,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Lấy context để tải theme
         context = MainActivity.this;
         loadTheme();
 
-//        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+//        Intent intent = new Intent(MainActivity.this, UploaderActivity.class);
 //        startActivity(intent);
     }
 
