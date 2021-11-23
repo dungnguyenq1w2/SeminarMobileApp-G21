@@ -22,13 +22,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.seminargalery_g21.model.Uploader;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class UploaderActivity extends AppCompatActivity {
 
@@ -40,7 +43,7 @@ public class UploaderActivity extends AppCompatActivity {
     private Uri mImageUri;
 
     private StorageReference mStorageRef;
-    private DatabaseReference mDatabaseRef;
+    private FirebaseFirestore mFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,7 @@ public class UploaderActivity extends AppCompatActivity {
         ibUpload = (ImageButton) findViewById(R.id.ib_send);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        mFirestore = FirebaseFirestore.getInstance();
 
         // nhận ảnh đã chọn từ intent
         ActivityResultLauncher<Intent> addImageResultLauncher = registerForActivityResult(
@@ -103,11 +106,21 @@ public class UploaderActivity extends AppCompatActivity {
                                     }, 50);
 
                                     Toast.makeText(UploaderActivity.this, "Upload successfully", Toast.LENGTH_SHORT).show();
-                                    Uploader uploader = new Uploader(
-                                            mImageUri.toString(),
-                                            taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
-                                    String uploadId = mDatabaseRef.push().getKey();
-                                    mDatabaseRef.child(uploadId).setValue(uploader);
+                                    Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                                    result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            Uploader uploader = new Uploader(
+                                                    mImageUri.toString(),
+                                                    uri.toString());
+
+                                            Map<String, Object> image = new HashMap<>();
+                                            image.put("imageUrl", uploader.getImageUrl());
+                                            image.put("name", uploader.getName());
+
+                                            mFirestore.collection("images").add(image);
+                                        }
+                                    });
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() { // xử lý khi bị lỗi
