@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:height="30dp"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:text="ALBUMS"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <!--        <EditText-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:imeOptions="actionSearch"-->
+        <!--            android:inputType="text"-->
+        <!--            android:text="Search photos"-->
+        <!--            android:paddingStart="15dp"-->
+        <!--            />-->
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:iconifiedByDefault="false"
+            android:inputType="text"
+            android:paddingStart="-8dp"
+            android:queryHint="Search photo"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_add"
+            android:text="Add album"
+            android:textColor="@color/black"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <GridView
+                android:id="@+id/album"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:horizontalSpacing="2dp"
+                android:numColumns="3"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="2dp" />
+        </ScrollView>
+
+        <!--        Hay la bo ScrollView them dong nay? -->
+        <!--        android:isScrollContainer="true"-->
+
+
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:id="@+id/recyclerview_gallery_images"/>-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center|bottom"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:textColor="@color/black"
+            android:drawableLeft="@drawable/ic_photos"
+            android:text="Photos"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center|bottom"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:textColor="@color/black"
+            android:drawableLeft="@drawable/ic_albums"
+            android:text="Albums"
+            />
+
+    </LinearLayout>
+</LinearLayout>

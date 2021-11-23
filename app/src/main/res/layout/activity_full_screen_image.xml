@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FullScreenImageActivity">
+
+    <ImageView
+        android:id="@+id/image_solo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="9" />
+
+    <LinearLayout
+        android:layout_weight="1"
+
+        android:layout_gravity="bottom"
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageButton
+            android:id="@+id/btn_react"
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#000000"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/react_white"
+            />
+        <ImageButton
+            android:layout_weight="1"
+            android:id="@+id/btn_react1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#000000"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_menu_delete" />
+    </LinearLayout>
+</LinearLayout>

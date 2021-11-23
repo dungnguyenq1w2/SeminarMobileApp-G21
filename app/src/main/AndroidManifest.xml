@@ -3,6 +3,7 @@
     package="com.example.seminargalery_g21">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SeminarGaleryG21">
         <activity
+            android:name=".FullScreenImageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ImageInfoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SharingActivity"
+            android:exported="true" />
+        <activity
             android:name=".UploaderActivity"
             android:exported="true" />
         <activity
@@ -19,7 +32,7 @@
             android:exported="true"
             android:noHistory="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
