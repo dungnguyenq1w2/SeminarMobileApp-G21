@@ -13,6 +13,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +57,16 @@ public class MainActivity extends AppCompatActivity {
 //
 //        Intent intent = new Intent(MainActivity.this,SharingActivity.class);
 //        startActivity(intent);
+
+        ImageButton ic_back = (ImageButton) findViewById(R.id.ic_back);
+        ic_back.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   Intent intent = new Intent(getApplicationContext(), AlbumActivity.class);
+                   startActivity(intent);
+               }
+           }
+        );
     }
 
     // Tải theme và đặt trạng thái này cho ứng dụng

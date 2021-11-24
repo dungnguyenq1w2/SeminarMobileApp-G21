@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SeminarGaleryG21">
         <activity
+            android:name=".AlbumActivity"
+            android:exported="true" />
+        <activity
             android:name=".FullScreenImageActivity"
             android:exported="true" />
         <activity
