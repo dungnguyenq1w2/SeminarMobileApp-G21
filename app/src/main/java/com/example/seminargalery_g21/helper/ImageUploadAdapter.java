@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,10 +36,9 @@ public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Uploader uploader = mUploaders.get(position);
+        holder.tvName.setText(uploader.getName());
         Picasso.get()
                 .load(uploader.getImageUrl())
-                .fit()
-                .centerCrop()
                 .into(holder.ivUpload);
     }
 
@@ -49,11 +49,13 @@ public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
 
+        public TextView tvName;
         public ImageView ivUpload;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            tvName = itemView.findViewById(R.id.tv_name);
             ivUpload = itemView.findViewById(R.id.iv_upload);
         }
     }

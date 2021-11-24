@@ -1,20 +1,19 @@
 package com.example.seminargalery_g21;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.widget.Toast;
-
 import com.example.seminargalery_g21.helper.ImageUploadAdapter;
 import com.example.seminargalery_g21.model.Uploader;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 import java.util.Vector;
@@ -25,7 +24,7 @@ public class SharingActivity extends AppCompatActivity {
 
     private ImageUploadAdapter mImageUploadAdapter;
 
-    private DatabaseReference mDatabaseRef;
+    private FirebaseFirestore mFirestore;
     private List<Uploader> mUploaders;
 
     @Override
@@ -39,24 +38,23 @@ public class SharingActivity extends AppCompatActivity {
 
         mUploaders = new Vector<>();
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("/uploads");
+        mFirestore = FirebaseFirestore.getInstance();
 
-        mDatabaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    Uploader uploader = postSnapshot.getValue(Uploader.class);
-                    mUploaders.add(uploader);
-                }
+        mFirestore.collection("images")
+                .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        for (DocumentChange documentChange : value.getDocumentChanges()) {
+                            mUploaders.add(new Uploader(
+                               documentChange.getDocument().get("name").toString(),
+                               documentChange.getDocument().get("imageUrl").toString()
+                            ));
+                        }
 
-                mImageUploadAdapter = new ImageUploadAdapter(SharingActivity.this, mUploaders);
-                rvImages.setAdapter(mImageUploadAdapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(SharingActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                        mImageUploadAdapter = new ImageUploadAdapter(SharingActivity.this, mUploaders);
+                        mImageUploadAdapter.notifyDataSetChanged();
+                        rvImages.setAdapter(mImageUploadAdapter);
+                    }
+                });
     }
 }
