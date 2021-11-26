@@ -4,7 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SharingActivity">
+
+    <Button
+        android:id="@+id/ib_to_create_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:drawableEnd="@drawable/ic_pencil"
+        android:text="@string/create_a_new_post"
+        android:textColor="@color/nearly_black"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_images"

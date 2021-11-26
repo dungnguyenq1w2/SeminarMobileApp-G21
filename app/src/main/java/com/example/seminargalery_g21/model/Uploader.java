@@ -1,31 +1,27 @@
 package com.example.seminargalery_g21.model;
 
+import com.google.firebase.Timestamp;
+
 public class Uploader {
-    private String mName;
+    private String mCaption;
     private String mImageUrl;
+    private Timestamp mPubDate;
 
-    public Uploader(String name, String imageUrl) {
-        mName = name;
+    public Uploader(String caption, String imageUrl, Timestamp pubDate) {
+        mCaption = caption;
         mImageUrl = imageUrl;
-
-        if (name.trim().equals("")) {
-            mName = "No name";
-        }
+        mPubDate = pubDate;
     }
 
-    public String getName() {
-        return mName;
-    }
-
-    public void setName(String mName) {
-        this.mName = mName;
+    public String getCaption() {
+        return mCaption;
     }
 
     public String getImageUrl() {
         return mImageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.mImageUrl = imageUrl;
+    public Timestamp getmPubDate() {
+        return mPubDate;
     }
 }

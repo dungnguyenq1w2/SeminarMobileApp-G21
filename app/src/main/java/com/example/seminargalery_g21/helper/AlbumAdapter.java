@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.seminargalery_g21.R;
+import com.example.seminargalery_g21.model.Album;
 
 import java.util.List;
 

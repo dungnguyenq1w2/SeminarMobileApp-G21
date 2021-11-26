@@ -18,6 +18,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:hint="@string/caption"/>
         
         <ProgressBar
             android:id="@+id/pb_upload"
@@ -29,7 +36,6 @@
             android:id="@+id/rl_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:padding="@dimen/padding_buttons">
 
             <ImageButton
@@ -38,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:background="@color/transparent"
-                android:src="@drawable/ic_choose" />
+                android:src="@drawable/ic_plus" />
 
             <ImageButton
                 android:id="@+id/ib_send"

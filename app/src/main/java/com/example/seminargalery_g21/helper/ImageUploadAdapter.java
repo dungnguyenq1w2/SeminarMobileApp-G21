@@ -14,6 +14,8 @@ import com.example.seminargalery_g21.R;
 import com.example.seminargalery_g21.model.Uploader;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.ImageViewHolder> {
@@ -35,10 +37,15 @@ public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy HH:mm");
+
         Uploader uploader = mUploaders.get(position);
-        holder.tvName.setText(uploader.getName());
+        holder.tvCaption.setText(uploader.getCaption());
+        holder.tvPubDate.setText(dateFormat.format(uploader.getmPubDate().toDate()));
         Picasso.get()
                 .load(uploader.getImageUrl())
+                .fit()
+                .centerCrop()
                 .into(holder.ivUpload);
     }
 
@@ -49,13 +56,15 @@ public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tvName;
+        public TextView tvCaption;
+        public TextView tvPubDate;
         public ImageView ivUpload;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvName = itemView.findViewById(R.id.tv_name);
+            tvCaption = itemView.findViewById(R.id.tv_caption);
+            tvPubDate = itemView.findViewById(R.id.tv_pub_date);
             ivUpload = itemView.findViewById(R.id.iv_upload);
         }
     }

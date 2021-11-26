@@ -10,6 +10,8 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="green">#FF3EB489</color>
 
+    <color name="nearly_black">#FF262626</color>
+    <color name="semi_gray">#FF8E8E8E</color>
     <color name="gray">#FFE7EAEF</color>
     <color name="dark_gray">#FF687684</color>
     <color name="light_gray">#FF989898</color>

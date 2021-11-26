@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -19,10 +20,10 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.seminargalery_g21.model.Uploader;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -35,6 +36,7 @@ import java.util.Map;
 
 public class UploaderActivity extends AppCompatActivity {
 
+    private EditText etCaption;
     private ProgressBar pbUpload;
     private ImageView ivPreview;
     private ImageButton ibAdd;
@@ -50,6 +52,7 @@ public class UploaderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uploader);
 
+        etCaption = (EditText) findViewById(R.id.et_caption);
         pbUpload = (ProgressBar) findViewById(R.id.pb_upload);
         ivPreview = (ImageView) findViewById(R.id.iv_preview);
         ibAdd = (ImageButton) findViewById(R.id.ib_add);
@@ -70,6 +73,7 @@ public class UploaderActivity extends AppCompatActivity {
                             mImageUri = result.getData().getData();
 
                             Picasso.get().load(mImageUri).placeholder(R.drawable.bg_upload).into(ivPreview);
+                            etCaption.getText().clear();
                         }
                     }
                 }
@@ -110,15 +114,13 @@ public class UploaderActivity extends AppCompatActivity {
                                     result.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
                                         public void onSuccess(Uri uri) {
-                                            Uploader uploader = new Uploader(
-                                                    mImageUri.toString(),
-                                                    uri.toString());
+                                            Map<String, Object> metaImage = new HashMap<>();
+                                            metaImage.put("imageUrl", uri.toString());
+                                            metaImage.put("caption", etCaption.getText().toString());
+//                                            metaImage.put("pubDate", String.valueOf(System.currentTimeMillis()));
+                                            metaImage.put("pubDate", FieldValue.serverTimestamp());
 
-                                            Map<String, Object> image = new HashMap<>();
-                                            image.put("imageUrl", uploader.getImageUrl());
-                                            image.put("name", uploader.getName());
-
-                                            mFirestore.collection("images").add(image);
+                                            mFirestore.collection("images").add(metaImage);
                                         }
                                     });
                                 }

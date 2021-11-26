@@ -1,4 +1,4 @@
-package com.example.seminargalery_g21.helper;
+package com.example.seminargalery_g21.model;
 
 public class Album {
     private String albumName;

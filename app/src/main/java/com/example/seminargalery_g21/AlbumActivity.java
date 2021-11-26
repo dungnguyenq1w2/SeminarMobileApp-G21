@@ -8,7 +8,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.seminargalery_g21.helper.Album;
+import com.example.seminargalery_g21.model.Album;
 import com.example.seminargalery_g21.helper.AlbumAdapter;
 
 import java.util.ArrayList;

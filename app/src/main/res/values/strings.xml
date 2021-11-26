@@ -11,4 +11,10 @@
     <string name="supports">Supports</string>
     <string name="share_app">Share app to friends</string>
 
+    <!--    SharingActivity-->
+    <string name="create_post">Create post...</string>
+
+    <!--    UploaderActivity-->
+    <string name="caption">Your caption goes here...</string>
+    <string name="create_a_new_post">Create a new post...</string>
 </resources>
