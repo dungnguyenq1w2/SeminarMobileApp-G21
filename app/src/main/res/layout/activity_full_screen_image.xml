@@ -7,6 +7,23 @@
     android:orientation="vertical"
     tools:context=".FullScreenImageActivity">
 
+    <LinearLayout
+        android:layout_weight="1"
+        android:gravity="right"
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageButton
+            android:id="@+id/image_option"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:adjustViewBounds="true"
+            android:background="#000000"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_info_24" />
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/image_solo"
         android:layout_width="match_parent"

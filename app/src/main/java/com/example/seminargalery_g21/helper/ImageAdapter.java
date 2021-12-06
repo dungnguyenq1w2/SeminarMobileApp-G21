@@ -65,5 +65,4 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     public interface PhotoListener {
         void onPhotoClick(String path);
     }
-
 }

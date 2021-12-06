@@ -19,22 +19,16 @@
         android:textStyle="bold" />
 
 
+    <!--    <ListView-->
+    <!--        android:id="@+id/lv_albums"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        />-->
 
-    <Button
-        android:layout_marginTop="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:adjustViewBounds="true"
-        android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/ic_add"
-        android:text="Add album"
-        android:textColor="@color/black"/>
-
-    <ListView
-        android:id="@+id/lv_albums"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:id="@+id/recyclerview_gallery_albums"/>
 
 </LinearLayout>
 

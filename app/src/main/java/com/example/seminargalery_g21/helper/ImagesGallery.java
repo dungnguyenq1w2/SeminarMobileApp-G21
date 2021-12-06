@@ -4,12 +4,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class ImagesGallery {
 
-    public static ArrayList<String> listOfImages(Context context) {
+    public static ArrayList<String> listOfImages(Context context, String albumName) {
+
         Uri uri;
         Cursor cursor;
         int column_index_data, column_index_folder_name;
@@ -26,12 +29,17 @@ public class ImagesGallery {
         column_index_data = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
 
         //get folder name
-        //column_index_folder_name = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+//        column_index_folder_name = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+        column_index_folder_name = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+        String bucketName ;
 
         while (cursor.moveToNext()) {
+            bucketName = cursor.getString(column_index_folder_name);
             absolutePathOfImages = cursor.getString(column_index_data);
 
-            listOfAllImages.add(absolutePathOfImages);
+            if ( albumName == ""|| bucketName.equals(albumName) ) {
+                listOfAllImages.add(absolutePathOfImages);
+            }
         }
         return listOfAllImages;
 
