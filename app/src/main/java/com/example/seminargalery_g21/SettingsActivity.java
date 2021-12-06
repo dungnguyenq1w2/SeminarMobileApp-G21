@@ -28,11 +28,12 @@ public class SettingsActivity extends AppCompatActivity {
 
         llDarkTheme = (LinearLayout) findViewById(R.id.ll_dark_theme);
         tvDarkTheme = (TextView) findViewById(R.id.tv_dark_theme);
-        llFontSize = (LinearLayout) findViewById(R.id.ll_font_size);
+//        llFontSize = (LinearLayout) findViewById(R.id.ll_font_size);
         llShare = (LinearLayout) findViewById(R.id.ll_share);
 
         // context dùng để truy xuất, chỉnh sửa SharedPreferences
         context = SettingsActivity.this;
+        setTitle("Settings");
 
         // lấy trạng thái theme hiện tại
         int themeMode = StateManager.getThemeMode(context);

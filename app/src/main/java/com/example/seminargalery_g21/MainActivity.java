@@ -54,9 +54,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             loadImages();
         }
-//
-//        Intent intent = new Intent(MainActivity.this,SharingActivity.class);
-//        startActivity(intent);
 
         ImageButton ic_back = (ImageButton) findViewById(R.id.ic_back);
         ic_back.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +64,24 @@ public class MainActivity extends AppCompatActivity {
                }
            }
         );
+
+        ImageButton ic_image = (ImageButton) findViewById(R.id.ic_image);
+        ic_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SharingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton ic_settings = (ImageButton) findViewById(R.id.ic_settings);
+        ic_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // Tải theme và đặt trạng thái này cho ứng dụng

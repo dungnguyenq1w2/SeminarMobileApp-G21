@@ -13,13 +13,37 @@
         android:padding="10dp"
         >
 
-        <ImageButton
-            android:id="@+id/ic_back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/ic_back"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
-            />
+            <ImageButton
+                android:id="@+id/ic_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/ic_back"
+                />
+
+            <ImageButton
+                android:id="@+id/ic_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_toEndOf="@+id/ic_back"
+                android:background="@drawable/ic_outline_image"
+                />
+
+            <ImageButton
+                android:id="@+id/ic_settings"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/ic_outline_settings"
+                />
+
+        </RelativeLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

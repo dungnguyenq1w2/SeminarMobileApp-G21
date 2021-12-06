@@ -1,5 +1,6 @@
 package com.example.seminargalery_g21;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -60,6 +61,7 @@ public class UploaderActivity extends AppCompatActivity {
 
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mFirestore = FirebaseFirestore.getInstance();
+        setTitle("Share with the world");
 
         // nhận ảnh đã chọn từ intent
         ActivityResultLauncher<Intent> addImageResultLauncher = registerForActivityResult(

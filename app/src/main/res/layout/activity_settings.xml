@@ -57,30 +57,30 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_font_size"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/settings_list_item_titles"
-                android:foreground="?selectableItemBackground">
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_font_size"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:background="@drawable/settings_list_item_titles"-->
+<!--                android:foreground="?selectableItemBackground">-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/distance_to_second"
-                    android:textColor="@color/dark_gray"
-                    android:textSize="@dimen/font_size_list_item_titles"
-                    android:text="@string/font_size" />
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="@dimen/distance_to_second"-->
+<!--                    android:textColor="@color/dark_gray"-->
+<!--                    android:textSize="@dimen/font_size_list_item_titles"-->
+<!--                    android:text="@string/font_size" />-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/light_gray"
-                    android:textSize="@dimen/font_size_captions"
-                    android:text="@string/font_size_second" />
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/light_gray"-->
+<!--                    android:textSize="@dimen/font_size_captions"-->
+<!--                    android:text="@string/font_size_second" />-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
         </LinearLayout>
 

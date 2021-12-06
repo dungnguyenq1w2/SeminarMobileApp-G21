@@ -1,12 +1,12 @@
 package com.example.seminargalery_g21;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +22,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 import java.util.Vector;
 
-public class SharingActivity extends AppCompatActivity {
+public class SharingActivity extends Activity {
 
     private Button btnToCreatePost;
     private RecyclerView rvImages;
