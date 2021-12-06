@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 public class FullScreenImageActivity extends AppCompatActivity {
 
     ImageView imgView;
+    ImageButton btnInfo;
     private ImageButton btnReact;
     private boolean isColorReact = false;
 
@@ -36,6 +37,18 @@ public class FullScreenImageActivity extends AppCompatActivity {
 //        ImageAdapter imgAdapter = new ImageAdapter(this);
 
         Glide.with(this).load(path).into(imgView);
+
+        btnInfo = (ImageButton) findViewById(R.id.btn_info);
+        btnInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(FullScreenImageActivity.this, ImageInfoActivity.class);
+                intent.putExtra("path", path);
+                startActivity(intent);
+            }
+        }) ;
+
         btnReact = (ImageButton) findViewById(R.id.btn_react);
         btnReact.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,7 +15,7 @@
         android:layout_height="50dp">
 
         <ImageButton
-            android:id="@+id/image_option"
+            android:id="@+id/btn_info"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:adjustViewBounds="true"
