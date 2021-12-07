@@ -50,3 +50,5 @@ public class AlbumActivity extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(adapter);
+    }
+}
