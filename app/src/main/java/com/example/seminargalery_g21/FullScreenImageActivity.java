@@ -1,9 +1,13 @@
 package com.example.seminargalery_g21;
 
 import android.app.ActionBar;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,6 +27,7 @@ public class FullScreenImageActivity extends AppCompatActivity {
     ImageView imgView;
     ImageButton btnInfo;
     private ImageButton btnReact;
+    private ImageButton btnDelete;
     private Context context;
     private AlbumDataSource albumDataSource;
 
@@ -47,6 +52,7 @@ public class FullScreenImageActivity extends AppCompatActivity {
         Glide.with(this).load(path).into(imgView);
         btnReact = (ImageButton) findViewById(R.id.btn_react);
         btnInfo = (ImageButton) findViewById(R.id.btn_info);
+        btnDelete = (ImageButton) findViewById(R.id.btn_delete);
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -67,11 +73,27 @@ public class FullScreenImageActivity extends AppCompatActivity {
             {
                 if(check(path)){
                     btnReact.setImageResource(R.drawable.react_white);
-                    albumDataSource.update(path, 0);
+                    albumDataSource.updateReact(path, 0);
+                    Intent intent = new Intent(FullScreenImageActivity.this, AlbumActivity.class);
+                    startActivity(intent);
+                    //finish();
                 }
                 else {
                     btnReact.setImageResource(R.drawable.react_red);
-                    albumDataSource.update(path, 1);
+                    albumDataSource.updateReact(path, 1);
+                }
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(check(path)){
+                    albumDataSource.updateBin(path, 1);
+                    Intent intent = new Intent(FullScreenImageActivity.this, AlbumActivity.class);
+                    startActivity(intent);
+                    //finish();
                 }
             }
         });

@@ -13,6 +13,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,11 +23,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.seminargalery_g21.helper.Album;
-import com.example.seminargalery_g21.helper.AlbumAdapter;
-import com.example.seminargalery_g21.helper.AlbumGallery;
+import com.example.seminargalery_g21.database.AlbumDataSource;
 import com.example.seminargalery_g21.helper.ImageAdapter;
 import com.example.seminargalery_g21.helper.ImagesGallery;
+import com.example.seminargalery_g21.helper.Photo;
 import com.example.seminargalery_g21.helper.StateManager;
 
 import java.util.ArrayList;
@@ -33,18 +34,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView album;
+    TextView gallery;
     RecyclerView recyclerView;
     ImageAdapter imageAdapter;
     List<String> images;
-    TextView album;
+    //TextView gallery_number;
     String albumName = "";
-
-//    RecyclerView recyclerView;
-//    ListView lvAlbums;
-//    ArrayList<Album> albumList;
-//    AlbumAdapter adapter;
-//    List<String> images;
-
+    List<String> loadImagesPhone;
+    AlbumDataSource albumDataSource;
     private static final int MY_READ_PERMISSION_CODE = 101;
 
     private Context context;
@@ -67,42 +65,11 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_READ_PERMISSION_CODE);
         } else {
             loadImages();
-//            recyclerView = findViewById(R.id.recyclerview_gallery_albums);
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-//
-//        albumList = AlbumGallery.listOfAlbum(MainActivity.this);
-//        //adapter = new AlbumAdapter(this, R.layout.albums_item, albumList);
-//        adapter = new AlbumAdapter(this, albumList, new AlbumAdapter.AlbumListener() {
-//            @Override
-//            public void onAlbumClick(Album album) {
-//                // Do something with photo
-//                Intent intent = new Intent(getApplicationContext(), ImageActivity.class);
-//
-//                intent.putExtra("albumName", album.getAlbumName());
-//                //intent.putExtra("album", album.getAlbumName());
-//                startActivity(intent);
-////                Toast.makeText(MainActivity.this, ""+path, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        recyclerView.setAdapter(adapter);
-//        }
         }
-
-
-//
-//        Intent intent = new Intent(MainActivity.this,SharingActivity.class);
-//        startActivity(intent);
-
-//        ImageButton ic_back = (ImageButton) findViewById(R.id.ic_back);
-//        ic_back.setOnClickListener(new View.OnClickListener() {
-//                                       @Override
-//                                       public void onClick(View view) {
-//                                           Intent intent = new Intent(getApplicationContext(), AlbumActivity.class);
-//                                           startActivity(intent);
-//                                       }
-//                                   }
-//        );
+        gallery = findViewById(R.id.gallery);
+        SpannableString content = new SpannableString("Gallery");
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        gallery.setText(content);
 
         album = (TextView) findViewById(R.id.album);
         album.setOnClickListener(new View.OnClickListener() {
@@ -131,26 +98,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-//        recyclerView = findViewById(R.id.recyclerview_gallery_albums);
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-//
-//        albumList = AlbumGallery.listOfAlbum(MainActivity.this);
-//        //adapter = new AlbumAdapter(this, R.layout.albums_item, albumList);
-//        adapter = new AlbumAdapter(this, albumList, new AlbumAdapter.AlbumListener() {
-//            @Override
-//            public void onAlbumClick(Album album) {
-//                // Do something with photo
-//                Intent intent = new Intent(getApplicationContext(), ImageActivity.class);
-//
-//                intent.putExtra("albumName", album.getAlbumName());
-//                //intent.putExtra("album", album.getAlbumName());
-//                startActivity(intent);
-////                Toast.makeText(MainActivity.this, ""+path, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        recyclerView.setAdapter(adapter);
-//    }
 
     // Tải theme và đặt trạng thái này cho ứng dụng
     private void loadTheme() {
@@ -165,7 +112,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
 
-        images = ImagesGallery.listOfImages(this, "");
+        loadImagesPhone = ImagesGallery.listOfImages(this, "");
+        images = new ArrayList<>();
+        insertSqlite(loadImagesPhone);
         imageAdapter = new ImageAdapter(this, images, new ImageAdapter.PhotoListener() {
             @Override
             public void onPhotoClick(String path) {
@@ -177,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(imageAdapter);
+
 
         //gallery_number.setText("Photos ("+images.size()+")");
     }
@@ -192,6 +142,29 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Read external storage permission denied", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+    public void insertSqlite(List<String> loadImagesPhone) {
+
+        albumDataSource = new AlbumDataSource(context);
+        List<Photo> photos = albumDataSource.getPhotos();
+
+        for (int i = 0; i < loadImagesPhone.size(); i++) {
+            boolean check = false;
+            for (int j = 0; j < photos.size(); j++) {
+                if (photos.get(j).getPath().equals(loadImagesPhone.get(i)))
+                    check = true;
+            }
+            if (!check) {
+                long r = albumDataSource.insert(loadImagesPhone.get(i));
+            }
+        }
+
+        List<Photo> photosUpdate = albumDataSource.getPhotos();
+        albumDataSource.close();
+        for (int i = 0; i < photosUpdate.size(); i++) {
+            if(photosUpdate.get(i).getRecycleBin() == 0)
+                images.add(photosUpdate.get(i).getPath());
         }
     }
 }

@@ -2,6 +2,8 @@ package com.example.seminargalery_g21;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -26,6 +28,7 @@ public class AlbumActivity extends AppCompatActivity {
     ArrayList<Album> albumList;
     AlbumAdapter adapter;
     TextView gallery;
+    TextView album;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,11 @@ public class AlbumActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        album = findViewById(R.id.album);
+        SpannableString content = new SpannableString("Album");
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        album.setText(content);
 
         recyclerView = findViewById(R.id.recyclerview_gallery_albums);
         recyclerView.setHasFixedSize(true);

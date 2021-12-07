@@ -16,7 +16,8 @@ public class AlbumDataSource {
     private DatabaseHelper dbHelper;
     private static final String UPDATE_REACT_PHOTO =
             "UPDATE PHOTO SET IS_REACT = ? where PATH = ?";
-
+    private static final String UPDATE_BIN_PHOTO =
+            "UPDATE PHOTO SET IS_RECYCLE_BIN = ? where PATH = ?";
     private static final String DELETE_PHOTO =
             "DELETE FROM PHOTO where PATH = ?";
 
@@ -53,8 +54,12 @@ public class AlbumDataSource {
         return r;
     }
 
-    public void update(String path, int react){
+    public void updateReact(String path, int react){
         db.execSQL(UPDATE_REACT_PHOTO, new String[]{react+"", path});
+    }
+
+    public void updateBin(String path, int state){
+        db.execSQL(UPDATE_BIN_PHOTO, new String[]{state+"", path});
     }
 
     public void deleteProductByPath(String path) {

@@ -12,10 +12,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.seminargalery_g21.database.AlbumDataSource;
 import com.example.seminargalery_g21.helper.ImageAdapter;
 import com.example.seminargalery_g21.helper.ImagesGallery;
+import com.example.seminargalery_g21.helper.Photo;
 import com.example.seminargalery_g21.helper.StateManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImageActivity extends AppCompatActivity {
@@ -25,6 +28,7 @@ public class ImageActivity extends AppCompatActivity {
     List<String> images;
     TextView gallery_number;
     String albumName = "";
+    AlbumDataSource albumDataSource;
 
     private Context context;
 
@@ -40,14 +44,8 @@ public class ImageActivity extends AppCompatActivity {
 
         gallery_number = findViewById(R.id.gallery_number);
         recyclerView = findViewById(R.id.recyclerview_gallery_images);
-
         // Check form permission
-
         loadImages();
-
-//
-//        Intent intent = new Intent(MainActivity.this,SharingActivity.class);
-//        startActivity(intent);
 
         ImageButton ic_back = (ImageButton) findViewById(R.id.ic_back);
         ic_back.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +74,18 @@ public class ImageActivity extends AppCompatActivity {
 
         albumName = intent.getExtras().getString("albumName");
         //Toast.makeText(this, albumName,Toast.LENGTH_SHORT).show();
+        if(albumName.equals("Favorites")){
+            images = addFavorite();
+        }
+        else if(albumName.equals("Recycle Bin"))
+        {
+            images = addRecycle();
+        }
+        else
+        {
+            images = ImagesGallery.listOfImages(this, albumName);
+        }
 
-        images = ImagesGallery.listOfImages(this, albumName);
         imageAdapter = new ImageAdapter(this, images, new ImageAdapter.PhotoListener() {
             @Override
             public void onPhotoClick(String path) {
@@ -91,5 +99,49 @@ public class ImageActivity extends AppCompatActivity {
         recyclerView.setAdapter(imageAdapter);
 
         gallery_number.setText(albumName + " (" +images.size()+")");
+    }
+
+    private List<String> addRecycle() {
+        List<String> temp = new ArrayList<>();;
+        albumDataSource = new AlbumDataSource(context);
+        List<Photo> photos = albumDataSource.getPhotos();
+        for(int i = 0; i < photos.size(); i++)
+        {
+            if(photos.get(i).getRecycleBin() == 1)
+            {
+                temp.add(photos.get(i).getPath());
+            }
+        }
+        return temp;
+    }
+
+    public List<String> addFavorite() {
+        List<String> temp = new ArrayList<>();;
+        albumDataSource = new AlbumDataSource(context);
+        List<Photo> photos = albumDataSource.getPhotos();
+        for(int i = 0; i < photos.size(); i++)
+        {
+            if(photos.get(i).getReact() == 1 && photos.get(i).getRecycleBin() == 0)
+            {
+                temp.add(photos.get(i).getPath());
+            }
+        }
+        return temp;
+//        for (int i = 0; i < loadImagesPhone.size(); i++) {
+//            boolean check = false;
+//            for (int j = 0; j < photos.size(); j++) {
+//                if (photos.get(j).getPath().equals(loadImagesPhone.get(i)))
+//                    check = true;
+//            }
+//            if (!check) {
+//                long r = albumDataSource.insert(loadImagesPhone.get(i));
+//            }
+//        }
+
+//        List<Photo> photosUpdate = albumDataSource.getPhotos();
+//        albumDataSource.close();
+//        for (int i = 0; i < photosUpdate.size(); i++) {
+//            images.add(photosUpdate.get(i).getPath());
+//        }
     }
 }
