@@ -6,55 +6,111 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:padding="10dp"-->
+<!--        >-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            >-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/ic_image"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:background="@drawable/ic_outline_image"-->
+<!--                />-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/ic_settings"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:background="@drawable/ic_outline_settings"-->
+<!--                />-->
+
+<!--        </RelativeLayout>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="MY GALLERY"-->
+<!--            android:textSize="25dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:id="@+id/gallery_number"-->
+<!--            />-->
+<!--    </LinearLayout>-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/recyclerview_gallery_images"/>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
         >
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/gallery"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            >
-
-            <ImageButton
-                android:id="@+id/ic_back"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentStart="true"
-                android:background="@drawable/ic_back"
-                />
-
-            <ImageButton
-                android:id="@+id/ic_image"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_toEndOf="@+id/ic_back"
-                android:background="@drawable/ic_outline_image"
-                />
-
-            <ImageButton
-                android:id="@+id/ic_settings"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/ic_outline_settings"
-                />
-
-        </RelativeLayout>
+            android:layout_weight="2"
+            android:height="30dp"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:text="Gallery"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="MY GALLERY"
-            android:textSize="25dp"
+            android:id="@+id/album"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:height="30dp"
             android:gravity="center_vertical"
-            android:layout_marginLeft="10dp"
+            android:paddingStart="15dp"
+            android:text="Album"
             android:textColor="@color/black"
-            android:id="@+id/gallery_number"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_weight="2"/>
+        <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        >
+
+        <ImageButton
+            android:id="@+id/ic_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_outline_image"
+            />
+
+        <ImageButton
+            android:id="@+id/ic_settings"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/ic_outline_settings"
             />
     </LinearLayout>
+    </LinearLayout>
+
+
+    <!--    <ListView-->
+    <!--        android:id="@+id/lv_albums"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

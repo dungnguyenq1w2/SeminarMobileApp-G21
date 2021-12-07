@@ -40,8 +40,8 @@
         <ImageButton
             android:id="@+id/btn_react"
             android:layout_weight="1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="#000000"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
@@ -50,8 +50,8 @@
         <ImageButton
             android:layout_weight="1"
             android:id="@+id/btn_react1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="#000000"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"

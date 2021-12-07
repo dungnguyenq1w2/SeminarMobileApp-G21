@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,12 +25,22 @@ public class AlbumActivity extends AppCompatActivity {
     ListView lvAlbums;
     ArrayList<Album> albumList;
     AlbumAdapter adapter;
+    TextView gallery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.album_list);
+
+        gallery = (TextView) findViewById(R.id.gallery) ;
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         recyclerView = findViewById(R.id.recyclerview_gallery_albums);
         recyclerView.setHasFixedSize(true);

@@ -32,7 +32,7 @@ public class ImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_image);
 
         // Lấy context để tải theme
         context = ImageActivity.this;
@@ -90,6 +90,6 @@ public class ImageActivity extends AppCompatActivity {
         });
         recyclerView.setAdapter(imageAdapter);
 
-        gallery_number.setText("Photos ("+images.size()+")");
+        gallery_number.setText(albumName + " (" +images.size()+")");
     }
 }

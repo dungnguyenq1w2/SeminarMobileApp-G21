@@ -17,13 +17,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.seminargalery_g21.helper.Album;
+import com.example.seminargalery_g21.helper.AlbumAdapter;
+import com.example.seminargalery_g21.helper.AlbumGallery;
 import com.example.seminargalery_g21.helper.ImageAdapter;
 import com.example.seminargalery_g21.helper.ImagesGallery;
 import com.example.seminargalery_g21.helper.StateManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,8 +36,14 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageAdapter imageAdapter;
     List<String> images;
-    TextView gallery_number;
+    TextView album;
     String albumName = "";
+
+//    RecyclerView recyclerView;
+//    ListView lvAlbums;
+//    ArrayList<Album> albumList;
+//    AlbumAdapter adapter;
+//    List<String> images;
 
     private static final int MY_READ_PERMISSION_CODE = 101;
 
@@ -48,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         context = MainActivity.this;
         loadTheme();
 
-        gallery_number = findViewById(R.id.gallery_number);
+        //gallery_number = findViewById(R.id.gallery_number);
         recyclerView = findViewById(R.id.recyclerview_gallery_images);
 
         // Check form permission
@@ -56,20 +67,51 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_READ_PERMISSION_CODE);
         } else {
             loadImages();
+//            recyclerView = findViewById(R.id.recyclerview_gallery_albums);
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+//
+//        albumList = AlbumGallery.listOfAlbum(MainActivity.this);
+//        //adapter = new AlbumAdapter(this, R.layout.albums_item, albumList);
+//        adapter = new AlbumAdapter(this, albumList, new AlbumAdapter.AlbumListener() {
+//            @Override
+//            public void onAlbumClick(Album album) {
+//                // Do something with photo
+//                Intent intent = new Intent(getApplicationContext(), ImageActivity.class);
+//
+//                intent.putExtra("albumName", album.getAlbumName());
+//                //intent.putExtra("album", album.getAlbumName());
+//                startActivity(intent);
+////                Toast.makeText(MainActivity.this, ""+path, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        recyclerView.setAdapter(adapter);
+//        }
         }
+
+
 //
 //        Intent intent = new Intent(MainActivity.this,SharingActivity.class);
 //        startActivity(intent);
 
-        ImageButton ic_back = (ImageButton) findViewById(R.id.ic_back);
-        ic_back.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View view) {
-                                           Intent intent = new Intent(getApplicationContext(), AlbumActivity.class);
-                                           startActivity(intent);
-                                       }
-                                   }
-        );
+//        ImageButton ic_back = (ImageButton) findViewById(R.id.ic_back);
+//        ic_back.setOnClickListener(new View.OnClickListener() {
+//                                       @Override
+//                                       public void onClick(View view) {
+//                                           Intent intent = new Intent(getApplicationContext(), AlbumActivity.class);
+//                                           startActivity(intent);
+//                                       }
+//                                   }
+//        );
+
+        album = (TextView) findViewById(R.id.album);
+        album.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AlbumActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ImageButton ic_image = (ImageButton) findViewById(R.id.ic_image);
         ic_image.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +131,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+//        recyclerView = findViewById(R.id.recyclerview_gallery_albums);
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+//
+//        albumList = AlbumGallery.listOfAlbum(MainActivity.this);
+//        //adapter = new AlbumAdapter(this, R.layout.albums_item, albumList);
+//        adapter = new AlbumAdapter(this, albumList, new AlbumAdapter.AlbumListener() {
+//            @Override
+//            public void onAlbumClick(Album album) {
+//                // Do something with photo
+//                Intent intent = new Intent(getApplicationContext(), ImageActivity.class);
+//
+//                intent.putExtra("albumName", album.getAlbumName());
+//                //intent.putExtra("album", album.getAlbumName());
+//                startActivity(intent);
+////                Toast.makeText(MainActivity.this, ""+path, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        recyclerView.setAdapter(adapter);
+//    }
 
     // Tải theme và đặt trạng thái này cho ứng dụng
     private void loadTheme() {
@@ -116,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         });
         recyclerView.setAdapter(imageAdapter);
 
-        gallery_number.setText("Photos ("+images.size()+")");
+        //gallery_number.setText("Photos ("+images.size()+")");
     }
 
     @Override
