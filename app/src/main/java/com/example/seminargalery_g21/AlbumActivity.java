@@ -50,28 +50,3 @@ public class AlbumActivity extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(adapter);
-        //lvAlbums.setAdapter(adapter);
-
-//        lvAlbums.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-    }
-
-//    private void mapping() {
-//        lvAlbums = findViewById(R.id.lv_albums);
-//        albumList = new ArrayList<>();
-//
-//        for(int i = 0; i < albumList.size(); i++) {
-//            albumList.add(new Album(albumList.get(i).getAlbumName(), albumList.get(i).getAlbumImage(), ), R.drawable.ic_all_photos_folder));
-//        }
-//
-////        albumList.add(new Album("Photos", R.drawable.ic_all_photos_folder));
-////        albumList.add(new Album("Favorites", R.drawable.ic_favorite_folder));
-////        albumList.add(new Album("Shared", R.drawable.ic_share_folder));
-////        albumList.add(new Album("Recycle bin", R.drawable.ic_bin_folder));
-//    }
-}
