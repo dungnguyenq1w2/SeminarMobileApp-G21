@@ -12,6 +12,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         SpannableString content = new SpannableString("Gallery");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         gallery.setText(content);
+        gallery.setTextColor(Color.parseColor("#FF038f3d"));
 
         album = (TextView) findViewById(R.id.album);
         album.setOnClickListener(new View.OnClickListener() {
