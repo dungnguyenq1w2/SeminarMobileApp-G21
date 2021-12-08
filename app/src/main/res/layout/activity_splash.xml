@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DKG - Developer Team"
+        android:text="21 - Developer Team"
         android:textColor="@color/white"
         android:textSize="20sp" />
 
