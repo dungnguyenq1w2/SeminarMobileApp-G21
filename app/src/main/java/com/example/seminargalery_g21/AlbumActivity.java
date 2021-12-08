@@ -65,7 +65,6 @@ public class AlbumActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ImageActivity.class);
 
                 intent.putExtra("albumName", album.getAlbumName());
-                //intent.putExtra("album", album.getAlbumName());
                 startActivity(intent);
 //                Toast.makeText(MainActivity.this, ""+path, Toast.LENGTH_SHORT).show();
             }

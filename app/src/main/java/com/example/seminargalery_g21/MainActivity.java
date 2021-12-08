@@ -127,13 +127,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), FullScreenImageActivity.class);
                 intent.putExtra("path", path);
                 startActivity(intent);
-//                Toast.makeText(MainActivity.this, ""+path, Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(imageAdapter);
 
-
-        //gallery_number.setText("Photos ("+images.size()+")");
     }
 
     @Override
