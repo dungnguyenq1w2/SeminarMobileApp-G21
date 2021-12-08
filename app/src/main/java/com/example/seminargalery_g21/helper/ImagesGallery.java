@@ -47,9 +47,10 @@ public class ImagesGallery {
             absolutePathOfImages = cursor.getString(column_index_data);
 
             if ((albumName == ""|| bucketName.equals(albumName))) {
+                listOfAllImages.add(absolutePathOfImages);
                for (int i = 0 ; i < photos.size(); i++) {
-                   if (photos.get(i).getPath().equals(absolutePathOfImages) && photos.get(i).getRecycleBin() == 0) {
-                       listOfAllImages.add(absolutePathOfImages);
+                   if (photos.get(i).getPath().equals(absolutePathOfImages) && photos.get(i).getRecycleBin() == 1) {
+                       listOfAllImages.remove(listOfAllImages.size() - 1);
                    }
                }
             }
