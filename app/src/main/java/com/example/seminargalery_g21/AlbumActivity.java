@@ -1,6 +1,7 @@
 package com.example.seminargalery_g21;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -49,6 +50,7 @@ public class AlbumActivity extends AppCompatActivity {
         SpannableString content = new SpannableString("Album");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         album.setText(content);
+        album.setTextColor(Color.parseColor("#FF038f3d"));
 
         recyclerView = findViewById(R.id.recyclerview_gallery_albums);
         recyclerView.setHasFixedSize(true);

@@ -12,6 +12,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         SpannableString content = new SpannableString("Gallery");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         gallery.setText(content);
+        gallery.setTextColor(Color.parseColor("#FF038f3d"));
 
         album = (TextView) findViewById(R.id.album);
         album.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         loadImagesPhone = ImagesGallery.listOfImages(this, "");
         images = new ArrayList<>();
         insertSqlite(loadImagesPhone);
-        imageAdapter = new ImageAdapter(this, images, new ImageAdapter.PhotoListener() {
+        imageAdapter = new ImageAdapter(this, loadImagesPhone, new ImageAdapter.PhotoListener() {
             @Override
             public void onPhotoClick(String path) {
                 // Do something with photo
@@ -160,11 +162,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        List<Photo> photosUpdate = albumDataSource.getPhotos();
-        albumDataSource.close();
-        for (int i = 0; i < photosUpdate.size(); i++) {
-            if(photosUpdate.get(i).getRecycleBin() == 0)
-                images.add(photosUpdate.get(i).getPath());
-        }
+//        List<Photo> photosUpdate = albumDataSource.getPhotos();
+//        albumDataSource.close();
+//        for (int i = 0; i < photosUpdate.size(); i++) {
+//            if(photosUpdate.get(i).getRecycleBin() == 0)
+//                images.add(photosUpdate.get(i).getPath());
+//        }
     }
 }
