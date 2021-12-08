@@ -45,7 +45,7 @@ public class ImageActivity extends AppCompatActivity {
         gallery_number = findViewById(R.id.gallery_number);
         recyclerView = findViewById(R.id.recyclerview_gallery_images);
         // Check form permission
-        loadImages();
+
 
         ImageButton ic_back = (ImageButton) findViewById(R.id.ic_back);
         ic_back.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +56,12 @@ public class ImageActivity extends AppCompatActivity {
            }
                                    }
         );
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadImages();
     }
 
     // Tải theme và đặt trạng thái này cho ứng dụng
@@ -127,21 +133,5 @@ public class ImageActivity extends AppCompatActivity {
             }
         }
         return temp;
-//        for (int i = 0; i < loadImagesPhone.size(); i++) {
-//            boolean check = false;
-//            for (int j = 0; j < photos.size(); j++) {
-//                if (photos.get(j).getPath().equals(loadImagesPhone.get(i)))
-//                    check = true;
-//            }
-//            if (!check) {
-//                long r = albumDataSource.insert(loadImagesPhone.get(i));
-//            }
-//        }
-
-//        List<Photo> photosUpdate = albumDataSource.getPhotos();
-//        albumDataSource.close();
-//        for (int i = 0; i < photosUpdate.size(); i++) {
-//            images.add(photosUpdate.get(i).getPath());
-//        }
     }
 }

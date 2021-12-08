@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,8 +48,6 @@ public class FullScreenImageActivity extends AppCompatActivity {
 
         String path = intent.getExtras().getString("path");
 
-//        ImageAdapter imgAdapter = new ImageAdapter(this);
-
         Glide.with(this).load(path).into(imgView);
         btnReact = (ImageButton) findViewById(R.id.btn_react);
         btnInfo = (ImageButton) findViewById(R.id.btn_info);
@@ -74,9 +73,7 @@ public class FullScreenImageActivity extends AppCompatActivity {
                 if(check(path)){
                     btnReact.setImageResource(R.drawable.react_white);
                     albumDataSource.updateReact(path, 0);
-                    Intent intent = new Intent(FullScreenImageActivity.this, AlbumActivity.class);
-                    startActivity(intent);
-                    //finish();
+                    finish();
                 }
                 else {
                     btnReact.setImageResource(R.drawable.react_red);
@@ -85,20 +82,44 @@ public class FullScreenImageActivity extends AppCompatActivity {
             }
         });
 
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
+        //Nut restore
+        if(checkIconRestore(path)){
+            btnDelete.setImageResource(R.drawable.ic_restore);
+            btnReact.setVisibility(View.INVISIBLE);
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnReact.getLayoutParams();
+            layoutParams.weight = 0f;
+            layoutParams.width = 0;
+            btnReact.setLayoutParams(layoutParams);
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    albumDataSource.updateBin(path, 0);
+                    finish();
+                }
+            });
 
+        }
+        else{
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
                     albumDataSource.updateBin(path, 1);
-                    Intent intent = new Intent(FullScreenImageActivity.this, AlbumActivity.class);
-                    startActivity(intent);
-                    //finish();
+                    finish();
+                }
+            });
+        }
 
-            }
-        });
     }
-    //add
+    public Boolean checkIconRestore(String path){
+        List<Photo> photos = albumDataSource.getPhotos();
+        for(int i = 0; i < photos.size(); i++){
+            if(photos.get(i).getPath().equals(path) && photos.get(i).getRecycleBin() == 1)
+                return true;
+        }
+        return false;
+    }
     public Boolean check(String path){
         List<Photo> photos = albumDataSource.getPhotos();
         for(int i = 0; i < photos.size(); i++){

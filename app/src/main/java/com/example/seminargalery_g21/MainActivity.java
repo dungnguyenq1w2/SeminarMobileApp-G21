@@ -64,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
         // Check form permission
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_READ_PERMISSION_CODE);
-        } else {
-            loadImages();
         }
         gallery = findViewById(R.id.gallery);
         SpannableString content = new SpannableString("Gallery");
@@ -99,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadImages();
     }
 
     // Tải theme và đặt trạng thái này cho ứng dụng
@@ -162,11 +165,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-//        List<Photo> photosUpdate = albumDataSource.getPhotos();
-//        albumDataSource.close();
-//        for (int i = 0; i < photosUpdate.size(); i++) {
-//            if(photosUpdate.get(i).getRecycleBin() == 0)
-//                images.add(photosUpdate.get(i).getPath());
-//        }
     }
 }
