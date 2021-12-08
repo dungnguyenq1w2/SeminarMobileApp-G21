@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         loadImagesPhone = ImagesGallery.listOfImages(this, "");
         images = new ArrayList<>();
         insertSqlite(loadImagesPhone);
-        imageAdapter = new ImageAdapter(this, images, new ImageAdapter.PhotoListener() {
+        imageAdapter = new ImageAdapter(this, loadImagesPhone, new ImageAdapter.PhotoListener() {
             @Override
             public void onPhotoClick(String path) {
                 // Do something with photo
@@ -162,11 +162,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        List<Photo> photosUpdate = albumDataSource.getPhotos();
-        albumDataSource.close();
-        for (int i = 0; i < photosUpdate.size(); i++) {
-            if(photosUpdate.get(i).getRecycleBin() == 0)
-                images.add(photosUpdate.get(i).getPath());
-        }
+//        List<Photo> photosUpdate = albumDataSource.getPhotos();
+//        albumDataSource.close();
+//        for (int i = 0; i < photosUpdate.size(); i++) {
+//            if(photosUpdate.get(i).getRecycleBin() == 0)
+//                images.add(photosUpdate.get(i).getPath());
+//        }
     }
 }

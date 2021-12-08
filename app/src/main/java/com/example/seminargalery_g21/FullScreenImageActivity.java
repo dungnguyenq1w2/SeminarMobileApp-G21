@@ -89,12 +89,12 @@ public class FullScreenImageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                if(check(path)){
+
                     albumDataSource.updateBin(path, 1);
                     Intent intent = new Intent(FullScreenImageActivity.this, AlbumActivity.class);
                     startActivity(intent);
                     //finish();
-                }
+
             }
         });
     }
