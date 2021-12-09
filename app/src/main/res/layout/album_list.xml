@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context=".AlbumActivity"
     >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,18 +36,33 @@
             android:textSize="25dp"
             android:textStyle="bold"
             android:layout_weight="2"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            >
 
+            <ImageButton
+                android:id="@+id/ic_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_outline_image"
+                />
+
+            <ImageButton
+                android:id="@+id/ic_settings"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/ic_outline_settings"
+                />
+        </LinearLayout>
     </LinearLayout>
-
-    <!--    <ListView-->
-    <!--        android:id="@+id/lv_albums"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        />-->
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:id="@+id/recyclerview_gallery_albums"/>
 
 </LinearLayout>

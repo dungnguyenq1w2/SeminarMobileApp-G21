@@ -6,51 +6,6 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:padding="10dp"-->
-<!--        >-->
-
-<!--        <RelativeLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            >-->
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/ic_image"-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:background="@drawable/ic_outline_image"-->
-<!--                />-->
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/ic_settings"-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:background="@drawable/ic_outline_settings"-->
-<!--                />-->
-
-<!--        </RelativeLayout>-->
-
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:text="MY GALLERY"-->
-<!--            android:textSize="25dp"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:id="@+id/gallery_number"-->
-<!--            />-->
-<!--    </LinearLayout>-->
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/recyclerview_gallery_images"/>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -105,12 +60,6 @@
     </LinearLayout>
     </LinearLayout>
 
-
-    <!--    <ListView-->
-    <!--        android:id="@+id/lv_albums"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

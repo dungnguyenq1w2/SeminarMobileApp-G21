@@ -52,6 +52,24 @@ public class AlbumActivity extends AppCompatActivity {
         album.setText(content);
         album.setTextColor(Color.parseColor("#FF038f3d"));
 
+        ImageButton ic_image = (ImageButton) findViewById(R.id.ic_image);
+        ic_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SharingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton ic_settings = (ImageButton) findViewById(R.id.ic_settings);
+        ic_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         recyclerView = findViewById(R.id.recyclerview_gallery_albums);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));

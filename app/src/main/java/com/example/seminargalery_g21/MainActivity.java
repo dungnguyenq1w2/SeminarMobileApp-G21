@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageAdapter imageAdapter;
     List<String> images;
-    //TextView gallery_number;
     String albumName = "";
     List<String> loadImagesPhone;
     AlbumDataSource albumDataSource;

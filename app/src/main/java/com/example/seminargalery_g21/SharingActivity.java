@@ -57,7 +57,7 @@ public class SharingActivity extends Activity {
     protected void onResume() { // tải ảnh mỗi khi resume, hoặc khởi động activity lần đầu, hoặc back từ activity đăng ảnh
         super.onResume();
 
-        mUploaders = new Vector<>();    // khởi tạo lại vector tránh trùng lap75 dữ liệu
+        mUploaders = new Vector<>();    // khởi tạo lại vector tránh trùng lắp dữ liệu
 
         mFirestore.collection("images")
                 .orderBy("pubDate", Query.Direction.DESCENDING)
