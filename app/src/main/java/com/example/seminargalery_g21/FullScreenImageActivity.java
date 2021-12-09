@@ -48,10 +48,15 @@ public class FullScreenImageActivity extends AppCompatActivity {
 
         String path = intent.getExtras().getString("path");
 
+        // Dùng Glide để hiển thị ảnh
         Glide.with(this).load(path).into(imgView);
+
+        // Xử lý các button quản lý hình ảnh
         btnReact = (ImageButton) findViewById(R.id.btn_react);
         btnInfo = (ImageButton) findViewById(R.id.btn_info);
         btnDelete = (ImageButton) findViewById(R.id.btn_delete);
+
+        // Truyền path qua màn hình ImageInfoActivity
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -62,6 +67,8 @@ public class FullScreenImageActivity extends AppCompatActivity {
             }
         }) ;
 
+
+        // Xử lý ảnh được thêm vào album Yêu thích
         if(check(path))
             btnReact.setImageResource(R.drawable.react_red);
         else
@@ -82,7 +89,7 @@ public class FullScreenImageActivity extends AppCompatActivity {
             }
         });
 
-        //Nut restore
+        // Xử lý ảnh trong thùng rác
         if(checkIconRestore(path)){
             btnDelete.setImageResource(R.drawable.ic_restore);
             btnReact.setVisibility(View.INVISIBLE);
@@ -110,8 +117,8 @@ public class FullScreenImageActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
+
     public Boolean checkIconRestore(String path){
         List<Photo> photos = albumDataSource.getPhotos();
         for(int i = 0; i < photos.size(); i++){
@@ -120,6 +127,7 @@ public class FullScreenImageActivity extends AppCompatActivity {
         }
         return false;
     }
+
     public Boolean check(String path){
         List<Photo> photos = albumDataSource.getPhotos();
         for(int i = 0; i < photos.size(); i++){

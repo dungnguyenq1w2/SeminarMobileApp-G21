@@ -64,12 +64,15 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_READ_PERMISSION_CODE);
         }
+
+        // Thay đổi màu cho textView ở trên thanh taskbar
         gallery = findViewById(R.id.gallery);
         SpannableString content = new SpannableString("Gallery");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         gallery.setText(content);
         gallery.setTextColor(Color.parseColor("#FF038f3d"));
 
+        // Xử lý chuyển qua màn hình AlbumActivity
         album = (TextView) findViewById(R.id.album);
         album.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Xử lý chuyển qua màn hình SharingActivity
         ImageButton ic_image = (ImageButton) findViewById(R.id.ic_image);
         ic_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Xử lý chuyển qua màn hình SettingsActivity
         ImageButton ic_settings = (ImageButton) findViewById(R.id.ic_settings);
         ic_settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,10 +102,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-        loadImages();
+        loadImages();   // Tải ảnh từ bộ nhớ
     }
 
     // Tải theme và đặt trạng thái này cho ứng dụng
@@ -112,13 +118,14 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 
+    // Tải ảnh từ bộ nhớ và thêm vào database
     private void loadImages() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
 
-        loadImagesPhone = ImagesGallery.listOfImages(this, "");
+        loadImagesPhone = ImagesGallery.listOfImages(this, ""); // Tải ảnh từ bộ nhớ
         images = new ArrayList<>();
-        insertSqlite(loadImagesPhone);
+        insertSqlite(loadImagesPhone);  // Thêm ảnh vào DB
         imageAdapter = new ImageAdapter(this, loadImagesPhone, new ImageAdapter.PhotoListener() {
             @Override
             public void onPhotoClick(String path) {
@@ -128,10 +135,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        recyclerView.setAdapter(imageAdapter);
-
+        recyclerView.setAdapter(imageAdapter);  // Dùng recyclerView để setAdapter
     }
 
+    // Xin phép quyền truy cập vào bộ nhớ
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -145,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    // Hàm chèn vòa DB
     public void insertSqlite(List<String> loadImagesPhone) {
 
         albumDataSource = new AlbumDataSource(context);
