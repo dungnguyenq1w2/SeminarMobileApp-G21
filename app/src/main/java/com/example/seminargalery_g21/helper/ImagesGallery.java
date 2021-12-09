@@ -28,26 +28,28 @@ public class ImagesGallery {
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
 
         String orderBy = MediaStore.Video.Media.DATE_TAKEN;
+        // Lấy ảnh từ bộ nhớ
         cursor = context.getContentResolver().query(uri, projection, null,null, orderBy+" DESC");
 
         column_index_data = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
 
-        //get folder name
+        // Lấy album
         column_index_folder_name = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
         String bucketName ;
 
+        // Lấy DB để kiểm tra ảnh bị xóa
         albumDataSource = new AlbumDataSource(context);
         List<Photo> photos = albumDataSource.getPhotos();
 
         albumDataSource.close();
 
-        while (cursor.moveToNext()) {
-            bucketName = cursor.getString(column_index_folder_name);
-            absolutePathOfImages = cursor.getString(column_index_data);
+        while (cursor.moveToNext()) {   // Lặp qua từng ảnh
+            bucketName = cursor.getString(column_index_folder_name);    // Lấy tên album
+            absolutePathOfImages = cursor.getString(column_index_data); // Lấy đường dẫn tuyệt đối của ảnh
 
             if ((albumName == ""|| bucketName.equals(albumName))) {
                 listOfAllImages.add(absolutePathOfImages);
-               for (int i = 0 ; i < photos.size(); i++) {
+               for (int i = 0 ; i < photos.size(); i++) {   // Kiểm tra ảnh bị xóa thì remove ảnh đó khỏi list Ảnh
                    if (photos.get(i).getPath().equals(absolutePathOfImages) && photos.get(i).getRecycleBin() == 1) {
                        listOfAllImages.remove(listOfAllImages.size() - 1);
                    }

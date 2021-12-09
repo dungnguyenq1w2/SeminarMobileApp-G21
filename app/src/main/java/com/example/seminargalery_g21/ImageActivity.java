@@ -44,9 +44,8 @@ public class ImageActivity extends AppCompatActivity {
 
         gallery_number = findViewById(R.id.gallery_number);
         recyclerView = findViewById(R.id.recyclerview_gallery_images);
-        // Check form permission
 
-
+        // Xử lý Button Back
         ImageButton ic_back = (ImageButton) findViewById(R.id.ic_back);
         ic_back.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -80,10 +79,10 @@ public class ImageActivity extends AppCompatActivity {
 
         albumName = intent.getExtras().getString("albumName");
         //Toast.makeText(this, albumName,Toast.LENGTH_SHORT).show();
-        if(albumName.equals("Favorites")){
+        if(albumName.equals("Favorites")){      // Xử lý cho album Yêu thích
             images = addFavorite();
         }
-        else if(albumName.equals("Recycle Bin"))
+        else if(albumName.equals("Recycle Bin")) // Xử lý cho thùng rác
         {
             images = addRecycle();
         }
