@@ -1,69 +1,81 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="3dp"
         >
 
         <TextView
-            android:id="@+id/gallery"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="2"
             android:height="30dp"
             android:gravity="center_vertical"
             android:paddingStart="15dp"
-            android:text="Gallery"
-            android:textColor="@color/black"
+            android:text="My Gallery"
             android:textSize="25dp"
+            android:textColor="@color/green"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/album"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:height="30dp"
-            android:gravity="center_vertical"
-            android:paddingStart="15dp"
-            android:text="Album"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_weight="2"/>
+<!--        <TextView-->
+<!--            android:id="@+id/album"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:height="30dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:paddingStart="15dp"-->
+<!--            android:text="Album"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="25dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_weight="2"/>-->
+
         <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
 
-        <ImageButton
-            android:id="@+id/ic_image"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/ic_outline_image"
-            />
+            <ImageButton
+                android:id="@+id/ic_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_outline_image" />
 
-        <ImageButton
-            android:id="@+id/ic_settings"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/ic_outline_settings"
-            />
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/ic_settings"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/ic_outline_settings" />
+        </LinearLayout>
+
     </LinearLayout>
 
+    <com.google.android.material.tabs.TabLayout
+    android:id="@+id/tab_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:tabSelectedTextColor="@color/green"
+    />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recyclerview_gallery_images"/>
+        android:layout_height="match_parent"
+        android:id="@+id/view_pager"/>
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/recyclerview_gallery_images"/>-->
 
 </LinearLayout>
