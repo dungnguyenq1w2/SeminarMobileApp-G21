@@ -50,11 +50,9 @@ public class ImageActivity extends AppCompatActivity {
         ic_back.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               Intent intent = new Intent(getApplicationContext(), AlbumActivity.class);
-               startActivity(intent);
+               finish();
            }
-                                   }
-        );
+        });
     }
 
     @Override
