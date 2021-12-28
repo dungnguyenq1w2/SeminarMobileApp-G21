@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:padding="@dimen/padding_settings"
     android:orientation="vertical"
-    android:background="@color/gray"
     tools:context=".SettingsActivity">
 
     <LinearLayout
@@ -20,7 +19,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/distance_to_item_titles"
             android:textAllCaps="true"
-            android:textColor="@color/dark_gray"
             android:textSize="@dimen/font_size_list_item_titles"
             android:textStyle="bold"
             android:text="@string/adjustments" />
@@ -36,14 +34,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/distance_between_items"
                 android:orientation="vertical"
-                android:background="@drawable/settings_list_item_titles"
+                android:padding="10dp"
                 android:foreground="?selectableItemBackground">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/distance_to_second"
-                    android:textColor="@color/dark_gray"
                     android:textSize="@dimen/font_size_list_item_titles"
                     android:text="@string/dark_theme" />
 
@@ -51,7 +48,6 @@
                     android:id="@+id/tv_dark_theme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_gray"
                     android:textSize="@dimen/font_size_captions"
                     android:text="@string/enable_dark_theme" />
 
@@ -71,7 +67,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/distance_to_item_titles"
             android:textAllCaps="true"
-            android:textColor="@color/dark_gray"
             android:textSize="@dimen/font_size_list_item_titles"
             android:textStyle="bold"
             android:text="@string/supports" />
@@ -87,13 +82,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/distance_between_items"
                 android:orientation="vertical"
-                android:background="@drawable/settings_list_item_titles"
+                android:padding="10dp"
                 android:foreground="?selectableItemBackground">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dark_gray"
                     android:textSize="@dimen/font_size_list_item_titles"
                     android:text="@string/share_app" />
 
