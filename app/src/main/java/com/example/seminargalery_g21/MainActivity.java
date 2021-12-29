@@ -49,13 +49,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        mTabLayout = findViewById(R.id.tab_layout);
-        mViewPager = findViewById(R.id.view_pager);
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        mViewPager.setAdapter(viewPagerAdapter);
-
-        mTabLayout.setupWithViewPager(mViewPager);
 
         // Lấy context để tải theme
         context = MainActivity.this;
@@ -150,7 +144,13 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == MY_READ_PERMISSION_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Read external storage permission granted", Toast.LENGTH_SHORT).show();
-                //loadImages();
+                mTabLayout = findViewById(R.id.tab_layout);
+                mViewPager = findViewById(R.id.view_pager);
+
+                ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+                mViewPager.setAdapter(viewPagerAdapter);
+
+                mTabLayout.setupWithViewPager(mViewPager);
             } else {
                 Toast.makeText(this, "Read external storage permission denied", Toast.LENGTH_SHORT).show();
             }
