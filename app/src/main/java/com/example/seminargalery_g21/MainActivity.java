@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -14,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -21,16 +23,20 @@ import android.widget.Toast;
 
 import com.example.seminargalery_g21.database.AlbumDataSource;
 import com.example.seminargalery_g21.helper.ImageAdapter;
+import com.example.seminargalery_g21.helper.ImagesGallery;
+import com.example.seminargalery_g21.helper.Photo;
 import com.example.seminargalery_g21.helper.StateManager;
 import com.example.seminargalery_g21.helper.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
+    public boolean  permission = false;
     TextView album;
     TextView gallery;
     RecyclerView recyclerView;
@@ -43,14 +49,29 @@ public class MainActivity extends AppCompatActivity {
 
     private Context context;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
+        // Check form permission
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_READ_PERMISSION_CODE);
+        } else {
+            permission = true;
+        }
 
+        mTabLayout = findViewById(R.id.tab_layout);
+        mViewPager = findViewById(R.id.view_pager);
 
+        if (permission) {
+            ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+            mViewPager.setAdapter(viewPagerAdapter);
+
+            mTabLayout.setupWithViewPager(mViewPager);
+        }
         // Lấy context để tải theme
         context = MainActivity.this;
         loadTheme();
@@ -58,10 +79,7 @@ public class MainActivity extends AppCompatActivity {
 //        //gallery_number = findViewById(R.id.gallery_number);
 //        recyclerView = findViewById(R.id.recyclerview_gallery_images);
 
-        // Check form permission
-        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_READ_PERMISSION_CODE);
-        }
+
 
 //        // Thay đổi màu cho textView ở trên thanh taskbar
 //        gallery = findViewById(R.id.gallery);
@@ -104,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
 //    @Override
 //    protected void onResume() {
 //        super.onResume();
-//        loadImages();   // Tải ảnh từ bộ nhớ
 //    }
 //
     // Tải theme và đặt trạng thái này cho ứng dụng
@@ -116,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 //
-//    // Tải ảnh từ bộ nhớ và thêm vào database
+    // Tải ảnh từ bộ nhớ và thêm vào database
 //    private void loadImages() {
 //        recyclerView.setHasFixedSize(true);
 //        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
@@ -144,20 +161,18 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == MY_READ_PERMISSION_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Read external storage permission granted", Toast.LENGTH_SHORT).show();
-                mTabLayout = findViewById(R.id.tab_layout);
-                mViewPager = findViewById(R.id.view_pager);
-
+//                //loadImages();
                 ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
                 mViewPager.setAdapter(viewPagerAdapter);
-
                 mTabLayout.setupWithViewPager(mViewPager);
+                permission = true;
             } else {
                 Toast.makeText(this, "Read external storage permission denied", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-//    // Hàm chèn vòa DB
+    // Hàm chèn vòa DB
 //    public void insertSqlite(List<String> loadImagesPhone) {
 //
 //        albumDataSource = new AlbumDataSource(context);
@@ -173,6 +188,5 @@ public class MainActivity extends AppCompatActivity {
 //                long r = albumDataSource.insert(loadImagesPhone.get(i));
 //            }
 //        }
-
 //    }
 }

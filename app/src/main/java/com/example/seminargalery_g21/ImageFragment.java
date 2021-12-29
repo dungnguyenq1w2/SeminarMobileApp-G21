@@ -90,6 +90,5 @@ public class ImageFragment extends Fragment {
                 long r = albumDataSource.insert(loadImagesPhone.get(i));
             }
         }
-
     }
 }
