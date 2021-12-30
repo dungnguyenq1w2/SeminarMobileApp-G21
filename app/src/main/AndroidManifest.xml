@@ -16,9 +16,6 @@
             android:name=".ImageActivity"
             android:exported="true" />
         <activity
-            android:name=".AlbumActivity"
-            android:exported="true" />
-        <activity
             android:name=".FullScreenImageActivity"
             android:exported="true" />
         <activity
